@@ -12,6 +12,11 @@
 		023F42F52A1F041400940065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F42A1F041400940065 /* Assets.xcassets */; };
 		023F42F82A1F041400940065 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F72A1F041400940065 /* Preview Assets.xcassets */; };
 		023F43002A1F04C900940065 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 023F42FF2A1F04C900940065 /* ComposableArchitecture */; };
+		0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5002A26EE2F003E9A3D /* PlaybackView.swift */; };
+		0289D5032A26F51C003E9A3D /* GradientEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5022A26F51C003E9A3D /* GradientEffectView.swift */; };
+		0289D5052A270983003E9A3D /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5042A270983003E9A3D /* AverageColor.swift */; };
+		0289D5072A270C49003E9A3D /* PlaybackDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5062A270C49003E9A3D /* PlaybackDomain.swift */; };
+		0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5082A272349003E9A3D /* CircleImageButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		023F42F22A1F041300940065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		023F42F42A1F041400940065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		023F42F72A1F041400940065 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0289D5002A26EE2F003E9A3D /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
+		0289D5022A26F51C003E9A3D /* GradientEffectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientEffectView.swift; sourceTree = "<group>"; };
+		0289D5042A270983003E9A3D /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
+		0289D5062A270C49003E9A3D /* PlaybackDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackDomain.swift; sourceTree = "<group>"; };
+		0289D5082A272349003E9A3D /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,10 +63,15 @@
 		023F42EF2A1F041300940065 /* EarBuds */ = {
 			isa = PBXGroup;
 			children = (
+				0289D5022A26F51C003E9A3D /* GradientEffectView.swift */,
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
 				023F42F22A1F041300940065 /* ContentView.swift */,
+				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
+				0289D5082A272349003E9A3D /* CircleImageButton.swift */,
+				0289D5062A270C49003E9A3D /* PlaybackDomain.swift */,
 				023F42F42A1F041400940065 /* Assets.xcassets */,
 				023F42F62A1F041400940065 /* Preview Content */,
+				0289D5042A270983003E9A3D /* AverageColor.swift */,
 			);
 			path = EarBuds;
 			sourceTree = "<group>";
@@ -145,7 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0289D5072A270C49003E9A3D /* PlaybackDomain.swift in Sources */,
 				023F42F32A1F041300940065 /* ContentView.swift in Sources */,
+				0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */,
+				0289D5032A26F51C003E9A3D /* GradientEffectView.swift in Sources */,
+				0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */,
+				0289D5052A270983003E9A3D /* AverageColor.swift in Sources */,
 				023F42F12A1F041300940065 /* EarBudsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
