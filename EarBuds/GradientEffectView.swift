@@ -160,7 +160,7 @@ struct GradientEffectView_Previews: PreviewProvider {
         GradientEffectView(
             .constant(
                 AnimatedGradient.Model(
-                    colors: [.red, .yellow, .green, .blue, .magenta]
+                    colors: [.clear]
                         .map { Color(uiColor: $0) }
                 )
             )

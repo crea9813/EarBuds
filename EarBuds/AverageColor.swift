@@ -9,6 +9,32 @@ import Foundation
 import SwiftUI
 
 extension UIImage {
+    enum ImageColorError: Error {
+            /// The `CIImage` instance could not be created.
+            case ciImageFailure
+            
+            /// The `CGImage` instance could not be created.
+            case cgImageFailure
+            
+            /// Failed to get the pixel data from the `CGImage` instance.
+            case cgImageDataFailure
+            
+            /// An error happened during the creation of the image after applying the filter.
+            case outputImageFailure
+            
+            var localizedDescription: String {
+                switch self {
+                case .ciImageFailure:
+                    return "Failed to get a `CIImage` instance."
+                case .cgImageFailure:
+                    return "Failed to get a `CGImage` instance."
+                case .cgImageDataFailure:
+                    return "Failed to get image data."
+                case .outputImageFailure:
+                    return "Could not get the output image from the filter."
+                }
+            }
+        }
     /// Average color of the image, nil if it cannot be found
     var averageColor: UIColor? {
         // convert our image to a Core Image Image

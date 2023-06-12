@@ -9,7 +9,9 @@ import Foundation
 import ComposableArchitecture
 
 struct Playback: ReducerProtocol {
-    struct State { }
+    struct State {
+        
+    }
     
     enum Action { }
     

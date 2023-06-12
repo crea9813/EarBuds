@@ -8,25 +8,35 @@
 import SwiftUI
 import ComposableArchitecture
 
-
-
 struct PlaybackView: View {
+    
+    @State private var dominantColors: [Color] = [.clear]
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 GradientEffectView(
                     .constant(
                         AnimatedGradient.Model(
-                            colors: [.red, .yellow, .green, .blue, .magenta]
-                                .map { Color(uiColor: $0) }
+                            colors: dominantColors
                         )
                     )
                 )
                 VStack {
+                    HStack {
+                        Button(action: { }) {
+                            CircleImageView(name: "person.fill")
+                        }.frame(width: 40, height: 40)
+                        Spacer()
+                    }
+                    .padding(.leading, 30)
+                    .padding(.top, 30)
+                    
                     Text("지금 매연님이 듣고 있는 노래는")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .font(.title2)
+                        .padding(.top, 40)
                         .padding(.bottom, 30)
                     Image("ic_album_cover")
                         .resizable()
@@ -52,15 +62,37 @@ struct PlaybackView: View {
                     }
                     .padding(.horizontal, 58)
                     .padding(.top, 8)
+                    Spacer()
+                    
+                    HStack {
+                        Image(systemName: "play.circle")
+                            .resizable()
+                            .foregroundColor(.white)
+                            .frame(width: 24, height: 24)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 18)
+                        Text("음악 앱으로 재생")
+                            .foregroundColor(Color(.white))
+                            .fontWeight(.semibold)
+                            .font(.headline)
+                            .padding(.trailing, 18)
+                    }
+                    .background(Color(.white.withAlphaComponent(0.5)))
+                    .clipShape(RoundedRectangle(cornerRadius: 22))
                     
                 }
+            }.onAppear {
+                setDominantColor()
             }
         }
     }
-    //    private func setAverageColor() {
-    //        let uiColor = UIImage(named: images[currentIndex])?.averageColor ?? .clear
-    //        backgroundColor = Color(uiColor)
-    //    }
+        private func setDominantColor() {
+            let dominantColors = try! UIImage(named: "ic_album_cover")!.dominantColorFrequencies()
+            
+            let colors = dominantColors.map { $0.color }.map { Color($0) }
+            
+            self.dominantColors = colors
+        }
 }
 
 struct PlaybackView_Previews: PreviewProvider {
