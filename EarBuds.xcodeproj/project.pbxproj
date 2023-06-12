@@ -24,6 +24,7 @@
 		02BF5A842A36A2C1002689B8 /* Difference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A832A36A2C1002689B8 /* Difference.swift */; };
 		02BF5A862A36A3FD002689B8 /* RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A852A36A3FD002689B8 /* RGB.swift */; };
 		02BF5A882A36A430002689B8 /* EYZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A872A36A430002689B8 /* EYZ.swift */; };
+		02BF5A8C2A36AED0002689B8 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A8B2A36AED0002689B8 /* InviteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		02BF5A832A36A2C1002689B8 /* Difference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difference.swift; sourceTree = "<group>"; };
 		02BF5A852A36A3FD002689B8 /* RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB.swift; sourceTree = "<group>"; };
 		02BF5A872A36A430002689B8 /* EYZ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYZ.swift; sourceTree = "<group>"; };
+		02BF5A8B2A36AED0002689B8 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
 				023F42F22A1F041300940065 /* ContentView.swift */,
 				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
+				02BF5A8B2A36AED0002689B8 /* InviteView.swift */,
 				0289D5082A272349003E9A3D /* CircleImageButton.swift */,
 				0289D5062A270C49003E9A3D /* PlaybackDomain.swift */,
 				023F42F42A1F041400940065 /* Assets.xcassets */,
@@ -185,6 +188,7 @@
 				023F42F32A1F041300940065 /* ContentView.swift in Sources */,
 				0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */,
 				02BF5A7C2A36A0B9002689B8 /* DominantColors.swift in Sources */,
+				02BF5A8C2A36AED0002689B8 /* InviteView.swift in Sources */,
 				0289D5032A26F51C003E9A3D /* GradientEffectView.swift in Sources */,
 				02BF5A7E2A36A19F002689B8 /* CGSize+Extension.swift in Sources */,
 				02BF5A882A36A430002689B8 /* EYZ.swift in Sources */,
