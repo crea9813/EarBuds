@@ -20,10 +20,12 @@ struct Playback: ReducerProtocol {
     enum Action {
         case fetchMusic
         case musicResponse(TaskResult<Song>)
+        case updateBackground(TaskResult<[Color]>)
         case shareButtonTapped
         case playInMusicButtonTapped
     }
     
+    @Dependency(\.musicClient) var musicClient
     private enum CancelID { case musicRequest }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -35,17 +37,23 @@ struct Playback: ReducerProtocol {
         case .musicResponse(.success(let song)):
             state.song = song
             
-//            Task {
-//                state.gradientColors = try! await fetchArtwork(with: song.artworkURL)
-//            }
-            
-            return .none
+            return .run { send in
+                await send(.updateBackground(
+                    TaskResult { try await fetchArtwork(with: song.artworkURL)}
+                ))
+            }
         case .musicResponse(.failure):
+            return .none
+        case .updateBackground(.success(let colors)):
+            print(colors)
+            state.gradientColors = colors
+            return .none
+        case .updateBackground(.failure):
             return .none
         case .fetchMusic:
             return .run { send in
                 await send(
-                    .musicResponse(.success(Song(name: "밤", artistName: "문성욱 & 임재현", artworkURL: ""))),
+                    .musicResponse(.success(Song(name: "밤", artistName: "문성욱 & 임재현", artworkURL: "https://image.bugsm.co.kr/album/images/170/201752/20175278.jpg"))),
                     animation: .default
                 )
             }

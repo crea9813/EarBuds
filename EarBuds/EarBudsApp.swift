@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 @main
 struct EarBudsApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlaybackView(store: Store(
+                initialState: Playback.State(),
+                reducer: Playback()))
         }
     }
 }

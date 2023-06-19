@@ -17,6 +17,7 @@
 		0289D5052A270983003E9A3D /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5042A270983003E9A3D /* AverageColor.swift */; };
 		0289D5072A270C49003E9A3D /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5062A270C49003E9A3D /* Playback.swift */; };
 		0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5082A272349003E9A3D /* CircleImageButton.swift */; };
+		02A151BC2A40217B0083401A /* MusicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A151BB2A40217B0083401A /* MusicClient.swift */; };
 		02BF5A7C2A36A0B9002689B8 /* DominantColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A7B2A36A0B9002689B8 /* DominantColors.swift */; };
 		02BF5A7E2A36A19F002689B8 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A7D2A36A19F002689B8 /* CGSize+Extension.swift */; };
 		02BF5A802A36A1D9002689B8 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A7F2A36A1D9002689B8 /* UIImage+Extension.swift */; };
@@ -39,6 +40,7 @@
 		0289D5042A270983003E9A3D /* AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AverageColor.swift; sourceTree = "<group>"; };
 		0289D5062A270C49003E9A3D /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		0289D5082A272349003E9A3D /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
+		02A151BB2A40217B0083401A /* MusicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicClient.swift; sourceTree = "<group>"; };
 		02BF5A7B2A36A0B9002689B8 /* DominantColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
 		02BF5A7D2A36A19F002689B8 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
 		02BF5A7F2A36A1D9002689B8 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				0289D5022A26F51C003E9A3D /* GradientEffectView.swift */,
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
+				02A151BB2A40217B0083401A /* MusicClient.swift */,
 				023F42F22A1F041300940065 /* ContentView.swift */,
 				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
 				02BF5A8B2A36AED0002689B8 /* InviteView.swift */,
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02A151BC2A40217B0083401A /* MusicClient.swift in Sources */,
 				0289D5072A270C49003E9A3D /* Playback.swift in Sources */,
 				023F42F32A1F041300940065 /* ContentView.swift in Sources */,
 				0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */,

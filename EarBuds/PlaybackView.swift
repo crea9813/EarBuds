@@ -38,13 +38,13 @@ struct PlaybackView: View {
                             .padding(.top, 40)
                             .padding(.bottom, 30)
                         
-                        AsyncImage(url: URL(string: viewStore.song!.artworkURL)) {
+                        AsyncImage(url: URL(string: viewStore.song?.artworkURL ?? "")) {
                             image in
                             image.resizable()
                         } placeholder: {
                             Image("").resizable()
                         }
-                        .frame(width: geometry.size.width - 100, height: geometry.size.width - 100)
+                        .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geometry.size.width - 100 : 400, height: UIDevice.current.userInterfaceIdiom == .phone ? geometry.size.width - 100 : 400)
                         .clipShape(RoundedRectangle(cornerSize: CGSize(width: 20, height: 20)))
                         .shadow(radius: 10)
                         
@@ -83,9 +83,11 @@ struct PlaybackView: View {
                         }
                         .background(Color(.white.withAlphaComponent(0.5)))
                         .clipShape(RoundedRectangle(cornerRadius: 22))
-                        
-                    }
+                    }.padding(.bottom, 18)
                 }
+            }
+            .task {
+                viewStore.send(.fetchMusic)
             }
         }
     }
