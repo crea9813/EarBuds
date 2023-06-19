@@ -17,7 +17,7 @@ extension UIImage {
         guard targetSize != resolution else {
             return self
         }
-                
+        
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
         format.opaque = true
@@ -28,5 +28,6 @@ extension UIImage {
         
         return resizedImage
     }
-    
 }
+
+
