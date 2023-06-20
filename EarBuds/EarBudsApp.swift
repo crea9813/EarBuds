@@ -10,6 +10,9 @@ import ComposableArchitecture
 
 @main
 struct EarBudsApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
             PlaybackView(store: Store(

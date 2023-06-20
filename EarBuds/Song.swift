@@ -7,7 +7,4 @@
 
 import Foundation
 
-struct Song: Equatable {
-    let name, artistName: String
-    let artworkURL: String
-}
+

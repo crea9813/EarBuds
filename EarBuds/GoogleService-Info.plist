@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>299747085791-7f6ocfcfsacqt4727vbjuv8p660e9a3p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.299747085791-7f6ocfcfsacqt4727vbjuv8p660e9a3p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDhW5TfJ9lMpNsJVY2th9i9e0MKG8dsEqo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>299747085791</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.minestrone.EarBuds</string>
+	<key>PROJECT_ID</key>
+	<string>earbuds-ca05b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>earbuds-ca05b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:299747085791:ios:d2c5d7dfa125228fedc86a</string>
+</dict>
+</plist>

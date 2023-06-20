@@ -17,6 +17,11 @@ struct Playback: ReducerProtocol {
         var gradientColors: [Color] = [.gray, .white]
     }
     
+    struct Song: Equatable {
+        let name, artistName: String
+        let artworkURL: String
+    }
+    
     enum Action {
         case fetchMusic
         case musicResponse(TaskResult<Song>)
