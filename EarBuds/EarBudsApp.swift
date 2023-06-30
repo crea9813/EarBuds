@@ -7,17 +7,23 @@
 
 import SwiftUI
 import ComposableArchitecture
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+import StoreKit
 
 @main
 struct EarBudsApp: App {
     
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    init() {
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {
-            PlaybackView(store: Store(
-                initialState: Playback.State(),
-                reducer: Playback()))
+            OnboardingView(store: Store(
+                initialState: Onboarding.State(),
+                reducer: Onboarding()))
         }
     }
 }

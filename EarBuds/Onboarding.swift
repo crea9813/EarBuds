@@ -7,35 +7,87 @@
 
 import SwiftUI
 import ComposableArchitecture
+import StoreKit
 import FirebaseAuth
 
 struct Onboarding: ReducerProtocol {
     
     struct State: Equatable {
+        @PresentationState var alert: AlertState<Action.Alert>?
         var playbackState: Playback.State?
     }
     
     enum Action {
+        case alert(PresentationAction<Alert>)
         case goToMainScreen
         case signInResponse(TaskResult<User>)
         case startButtonTapped
+        case musicAuthorizationStatusResponse(SKCloudServiceAuthorizationStatus)
+        
+        enum Alert: Equatable {}
     }
+    
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
         switch action {
+        case .alert:
+          return .none
+            
         case .goToMainScreen:
             state.playbackState = Playback.State()
             return .none
+            
         case .signInResponse(.success(let user)):
             UserDefaults.standard.set(user.uid, forKey: "uid")
             return .none
+            
         case .signInResponse(.failure):
             return .none
+            
         case .startButtonTapped:
             return .run { send in
+                let status = await self.requestAuthorization()
+                await send(.musicAuthorizationStatusResponse(status))
+                
+                guard status == .authorized
+                else { return }
+                
                 await send(.signInResponse(
                     TaskResult { try await signInAnonymously() }
                 ))
+            }
+            
+        case .musicAuthorizationStatusResponse(let status):
+            switch status {
+            case .authorized:
+                self.fetchUserToken()
+              return .none
+            case .denied:
+                state.alert = AlertState {
+                  TextState(
+                    """
+                    You denied access to speech recognition. This app needs access to transcribe your \
+                    speech.
+                    """
+                  )
+                }
+              return .none
+            case .notDetermined:
+              return .none
+
+            case .restricted:
+              return .none
+
+            @unknown default:
+              return .none
+            }
+        }
+    }
+    
+    func requestAuthorization() async -> SKCloudServiceAuthorizationStatus {
+        return await withCheckedContinuation { continuation in
+            SKCloudServiceController.requestAuthorization { status in
+                continuation.resume(returning: status)
             }
         }
     }
@@ -47,5 +99,43 @@ struct Onboarding: ReducerProtocol {
                 continuation.resume(returning: user)
             }
         }
+    }
+    
+    private func fetchUserToken() {
+        guard let developerToken = fetchDeveloperToken() else { return }
+        
+        if SKCloudServiceController.authorizationStatus() == .authorized {
+            
+            let completionHandler: (String?, Error?) -> Void = { token, error in
+                guard error == nil else {
+                    print("An error occurred when requesting user token: \(error!.localizedDescription)")
+                    return
+                }
+                
+                guard let token = token else {
+                    print("Unexpected value from SKCloudServiceController for user token.")
+                    return
+                }
+                
+                
+                print("*** USER TOKEN : \(token) ***")
+                /// Store the Music User Token for future use in your application.
+                let userDefaults = UserDefaults.standard
+                
+                userDefaults.set(token, forKey: "MUSIC_USER_TOKEN")
+                userDefaults.synchronize()
+            }
+            
+            if #available(iOS 11.0, *) {
+                SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken, completionHandler: completionHandler)
+            } else {
+                SKCloudServiceController().requestPersonalizationToken(forClientToken: developerToken, withCompletionHandler: completionHandler)
+            }
+        }
+    }
+    
+    private func fetchDeveloperToken() -> String? {
+        let token: String? = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjU2Njc3NTQ5WTUifQ.eyJpYXQiOjE2ODgwMDM1NDQsImV4cCI6MTcwMzU1NTU0NCwiaXNzIjoiQlpTQzg5OTMzUiJ9.buAWAurWhkV8UnIKX-W1eckRJodTO_8wRagFfuAcQCwLg7Vn5QoLgJ0wdeCx4qafyUkU2d6RVjbM8yCludNdlg"
+        return token
     }
 }

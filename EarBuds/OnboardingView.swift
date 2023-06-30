@@ -30,7 +30,7 @@ struct OnboardingView: View {
                             .padding(.bottom, 30)
                         ZStack {
                             Circle()
-                                .frame(width: geometry.size.width - 100, height: geometry.size.width - 100)
+                                .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? geometry.size.width - 100 : 400, height: UIDevice.current.userInterfaceIdiom == .phone ? geometry.size.width - 100 : 400)
                                 .shadow(radius: 10)
                                 .foregroundColor(Color(.black.withAlphaComponent(0.5)))
                             Circle()
@@ -59,6 +59,7 @@ struct OnboardingView: View {
                     }
                 }
             }
+            .alert(store: self.store.scope(state: \.$alert, action: Onboarding.Action.alert))
         }
     }
     

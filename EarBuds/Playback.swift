@@ -56,6 +56,7 @@ struct Playback: ReducerProtocol {
         case .updateBackground(.failure):
             return .none
         case .fetchMusic:
+            print(UserDefaults.standard.string(forKey: "MUSIC_USER_TOKEN"))
             return .run { send in
                 await send(
                     .musicResponse(.success(Song(name: "밤", artistName: "문성욱 & 임재현", artworkURL: "https://image.bugsm.co.kr/album/images/170/201752/20175278.jpg"))),

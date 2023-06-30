@@ -76,7 +76,7 @@ extension MusicClient: DependencyKey {
     static let liveValue = MusicClient(
         recentlyPlayedTrack: { result in
             var components = URLComponents(string: "https://api.music.apple.com/v1/me/recent/played/tracks")!
-            components.queryItems = [URLQueryItem(name: "Music-User-Token", value: UserDefaults.standard.string(forKey: "Music-Bud-Token"))]
+            components.queryItems = [URLQueryItem(name: "Music-User-Token", value: UserDefaults.standard.string(forKey: "MUSIC_USER_TOKEN"))]
             
             let (data, _) = try await URLSession.shared.data(from: components.url!)
             return try jsonDecoder.decode(Tracks.self, from: data)

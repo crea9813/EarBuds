@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0237EA9E2A4D33F500647DF2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0237EA9D2A4D33F500647DF2 /* ComposableArchitecture */; };
 		023F42F12A1F041300940065 /* EarBudsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F42F02A1F041300940065 /* EarBudsApp.swift */; };
 		023F42F32A1F041300940065 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F42F22A1F041300940065 /* ContentView.swift */; };
 		023F42F52A1F041400940065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F42A1F041400940065 /* Assets.xcassets */; };
 		023F42F82A1F041400940065 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F72A1F041400940065 /* Preview Assets.xcassets */; };
-		023F43002A1F04C900940065 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 023F42FF2A1F04C900940065 /* ComposableArchitecture */; };
 		0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5002A26EE2F003E9A3D /* PlaybackView.swift */; };
 		0289D5032A26F51C003E9A3D /* GradientEffectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5022A26F51C003E9A3D /* GradientEffectView.swift */; };
 		0289D5052A270983003E9A3D /* AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5042A270983003E9A3D /* AverageColor.swift */; };
 		0289D5072A270C49003E9A3D /* Playback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5062A270C49003E9A3D /* Playback.swift */; };
 		0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5082A272349003E9A3D /* CircleImageButton.swift */; };
 		02A151BC2A40217B0083401A /* MusicClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A151BB2A40217B0083401A /* MusicClient.swift */; };
-		02A151C12A4134010083401A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A151C02A4134010083401A /* AppDelegate.swift */; };
 		02A151C42A4134C10083401A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 02A151C32A4134C10083401A /* FirebaseAuth */; };
 		02A151C62A4134C10083401A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 02A151C52A4134C10083401A /* FirebaseFirestore */; };
 		02A151C82A4138A20083401A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02A151C72A4138A20083401A /* GoogleService-Info.plist */; };
@@ -46,7 +45,6 @@
 		0289D5062A270C49003E9A3D /* Playback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playback.swift; sourceTree = "<group>"; };
 		0289D5082A272349003E9A3D /* CircleImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButton.swift; sourceTree = "<group>"; };
 		02A151BB2A40217B0083401A /* MusicClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicClient.swift; sourceTree = "<group>"; };
-		02A151C02A4134010083401A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02A151C72A4138A20083401A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		02A151C92A41396C0083401A /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		02BF5A7B2A36A0B9002689B8 /* DominantColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DominantColors.swift; sourceTree = "<group>"; };
@@ -65,9 +63,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				023F43002A1F04C900940065 /* ComposableArchitecture in Frameworks */,
 				02A151C42A4134C10083401A /* FirebaseAuth in Frameworks */,
 				02A151C62A4134C10083401A /* FirebaseFirestore in Frameworks */,
+				0237EA9E2A4D33F500647DF2 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +94,6 @@
 				02A151C72A4138A20083401A /* GoogleService-Info.plist */,
 				0289D5022A26F51C003E9A3D /* GradientEffectView.swift */,
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
-				02A151C02A4134010083401A /* AppDelegate.swift */,
 				02A151BB2A40217B0083401A /* MusicClient.swift */,
 				023F42F22A1F041300940065 /* ContentView.swift */,
 				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
@@ -144,9 +141,9 @@
 			);
 			name = EarBuds;
 			packageProductDependencies = (
-				023F42FF2A1F04C900940065 /* ComposableArchitecture */,
 				02A151C32A4134C10083401A /* FirebaseAuth */,
 				02A151C52A4134C10083401A /* FirebaseFirestore */,
+				0237EA9D2A4D33F500647DF2 /* ComposableArchitecture */,
 			);
 			productName = EarBuds;
 			productReference = 023F42ED2A1F041300940065 /* EarBuds.app */;
@@ -177,8 +174,8 @@
 			);
 			mainGroup = 023F42E42A1F041300940065;
 			packageReferences = (
-				023F42FE2A1F04C900940065 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				02A151C22A4134C10083401A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				0237EA9C2A4D33F500647DF2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 023F42EE2A1F041300940065 /* Products */;
 			projectDirPath = "";
@@ -220,7 +217,6 @@
 				02BF5A882A36A430002689B8 /* EYZ.swift in Sources */,
 				02BF5A822A36A1F7002689B8 /* CGFloat+Extension.swift in Sources */,
 				0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */,
-				02A151C12A4134010083401A /* AppDelegate.swift in Sources */,
 				02BF5A802A36A1D9002689B8 /* UIImage+Extension.swift in Sources */,
 				0289D5052A270983003E9A3D /* AverageColor.swift in Sources */,
 				02BF5A842A36A2C1002689B8 /* Difference.swift in Sources */,
@@ -357,6 +353,7 @@
 				DEVELOPMENT_TEAM = BZSC89933R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "친구와 내 음악을 공유하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -386,6 +383,7 @@
 				DEVELOPMENT_TEAM = BZSC89933R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "친구와 내 음악을 공유하기 위해 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,12 +426,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		023F42FE2A1F04C900940065 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+		0237EA9C2A4D33F500647DF2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.9.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		02A151C22A4134C10083401A /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -447,9 +445,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		023F42FF2A1F04C900940065 /* ComposableArchitecture */ = {
+		0237EA9D2A4D33F500647DF2 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 023F42FE2A1F04C900940065 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			package = 0237EA9C2A4D33F500647DF2 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
 		};
 		02A151C32A4134C10083401A /* FirebaseAuth */ = {
