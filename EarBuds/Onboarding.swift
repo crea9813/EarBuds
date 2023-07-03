@@ -56,6 +56,12 @@ struct Onboarding: ReducerProtocol {
                 
             case .startButtonTapped:
                 return .run { send in
+                    let status = await self.requestAuthorization()
+                    await send(.musicAuthorizationStatusResponse(status))
+
+                    guard status == .authorized
+                    else { return }
+                    
                     await send(.signInResponse(
                         TaskResult { try await signInAnonymously() }
                     ))
