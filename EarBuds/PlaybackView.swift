@@ -89,6 +89,7 @@ struct PlaybackView: View {
             .task {
                 viewStore.send(.fetchMusic)
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
 }

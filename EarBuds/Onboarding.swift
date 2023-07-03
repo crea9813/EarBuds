@@ -15,11 +15,14 @@ struct Onboarding: ReducerProtocol {
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.Alert>?
         var playbackState: Playback.State?
+        var isNavigationActive: Bool = false
+        var playback: Playback.State?
     }
     
     enum Action {
+        case playback(Playback.Action)
+        case setNavigation(isActive: Bool)
         case alert(PresentationAction<Alert>)
-        case goToMainScreen
         case signInResponse(TaskResult<User>)
         case startButtonTapped
         case musicAuthorizationStatusResponse(SKCloudServiceAuthorizationStatus)
@@ -27,60 +30,68 @@ struct Onboarding: ReducerProtocol {
         enum Alert: Equatable {}
     }
     
-    
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .alert:
-          return .none
-            
-        case .goToMainScreen:
-            state.playbackState = Playback.State()
-            return .none
-            
-        case .signInResponse(.success(let user)):
-            UserDefaults.standard.set(user.uid, forKey: "uid")
-            return .none
-            
-        case .signInResponse(.failure):
-            return .none
-            
-        case .startButtonTapped:
-            return .run { send in
-                let status = await self.requestAuthorization()
-                await send(.musicAuthorizationStatusResponse(status))
+    var body: some ReducerProtocol<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case .setNavigation(isActive: true):
+                state.isNavigationActive = true
+                state.playback = Playback.State()
+                print("navigation")
+                return .none
                 
-                guard status == .authorized
-                else { return }
+            case .setNavigation(isActive: false):
+                state.isNavigationActive = false
+                state.playback = nil
+                print("false")
+                return .none
                 
-                await send(.signInResponse(
-                    TaskResult { try await signInAnonymously() }
-                ))
-            }
-            
-        case .musicAuthorizationStatusResponse(let status):
-            switch status {
-            case .authorized:
-                self.fetchUserToken()
-              return .none
-            case .denied:
-                state.alert = AlertState {
-                  TextState(
+            case .signInResponse(.success(let user)):
+                print(user)
+                UserDefaults.standard.set(user.uid, forKey: "uid")
+                return .none
+                
+            case .signInResponse(.failure):
+                print("failure")
+                return .none
+                
+            case .startButtonTapped:
+                return .run { send in
+                    await send(.signInResponse(
+                        TaskResult { try await signInAnonymously() }
+                    ))
+                }
+                
+            case .musicAuthorizationStatusResponse(let status):
+                switch status {
+                case .authorized:
+                    self.fetchUserToken()
+                    return .none
+                case .denied:
+                    state.alert = AlertState {
+                        TextState(
                     """
                     You denied access to speech recognition. This app needs access to transcribe your \
                     speech.
                     """
-                  )
+                        )
+                    }
+                    return .none
+                case .notDetermined:
+                    return .none
+                    
+                case .restricted:
+                    return .none
+                    
+                @unknown default:
+                    return .none
                 }
-              return .none
-            case .notDetermined:
-              return .none
-
-            case .restricted:
-              return .none
-
-            @unknown default:
-              return .none
+            case .playback(_):
+                return .none
+            case .alert(_):
+                return .none
             }
+        }.ifLet(\.playback, action: /Action.playback) {
+            Playback()
         }
     }
     
