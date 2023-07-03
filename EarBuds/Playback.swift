@@ -11,7 +11,7 @@ import ComposableArchitecture
 struct Playback: ReducerProtocol {
     
     struct State: Equatable {
-        var song: Song?
+        var track: Tracks.Track?
         var gradientColors: [Color] = [.gray, .white]
     }
     
@@ -22,7 +22,7 @@ struct Playback: ReducerProtocol {
     
     enum Action {
         case fetchMusic
-        case musicResponse(TaskResult<Song>)
+        case musicResponse(TaskResult<Tracks.Track>)
         case updateBackground(TaskResult<[Color]>)
         case shareButtonTapped
         case playInMusicButtonTapped
@@ -37,15 +37,15 @@ struct Playback: ReducerProtocol {
             return .none
         case .playInMusicButtonTapped:
             return .none
-        case .musicResponse(.success(let song)):
-            state.song = song
+        case .musicResponse(.success(let track)):
+            state.track = track
             
             return .run { send in
                 await send(.updateBackground(
-                    TaskResult { try await fetchArtwork(with: song.artworkURL)}
-                ))
+                    TaskResult { try await fetchArtwork(with: track.attributes.artwork.url.replacingOccurrences(of: "{w}", with: "1000").replacingOccurrences(of: "{h}", with: "1000"))}
+                ), animation: .none)
             }
-        case .musicResponse(.failure):
+        case .musicResponse(.failure(let error)):
             return .none
         case .updateBackground(.success(let colors)):
             state.gradientColors = colors
@@ -55,8 +55,10 @@ struct Playback: ReducerProtocol {
         case .fetchMusic:
             return .run { send in
                 await send(
-                    .musicResponse(.success(Song(name: "밤", artistName: "문성욱 & 임재현", artworkURL: "https://image.bugsm.co.kr/album/images/170/201752/20175278.jpg"))),
-                    animation: .default
+                    .musicResponse(TaskResult {
+                        try await self.musicClient.recentlyPlayedTrack()
+                    }),
+                    animation: .none
                 )
             }
             .cancellable(id: CancelID.musicRequest)
