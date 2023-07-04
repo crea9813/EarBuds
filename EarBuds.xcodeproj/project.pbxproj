@@ -30,6 +30,7 @@
 		02BF5A862A36A3FD002689B8 /* RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A852A36A3FD002689B8 /* RGB.swift */; };
 		02BF5A882A36A430002689B8 /* EYZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A872A36A430002689B8 /* EYZ.swift */; };
 		02BF5A8C2A36AED0002689B8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */; };
+		02FD6E382A53C3D1004066BE /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E372A53C3D1004066BE /* FirestoreClient.swift */; };
 		839301FD2A3BE1BD00A5CEAE /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839301FC2A3BE1BD00A5CEAE /* Song.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		02BF5A852A36A3FD002689B8 /* RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB.swift; sourceTree = "<group>"; };
 		02BF5A872A36A430002689B8 /* EYZ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYZ.swift; sourceTree = "<group>"; };
 		02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		02FD6E372A53C3D1004066BE /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		839301FC2A3BE1BD00A5CEAE /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +97,7 @@
 				0289D5022A26F51C003E9A3D /* GradientEffectView.swift */,
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
 				02A151BB2A40217B0083401A /* MusicClient.swift */,
+				02FD6E372A53C3D1004066BE /* FirestoreClient.swift */,
 				023F42F22A1F041300940065 /* ContentView.swift */,
 				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
 				02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */,
@@ -217,6 +220,7 @@
 				02BF5A882A36A430002689B8 /* EYZ.swift in Sources */,
 				02BF5A822A36A1F7002689B8 /* CGFloat+Extension.swift in Sources */,
 				0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */,
+				02FD6E382A53C3D1004066BE /* FirestoreClient.swift in Sources */,
 				02BF5A802A36A1D9002689B8 /* UIImage+Extension.swift in Sources */,
 				0289D5052A270983003E9A3D /* AverageColor.swift in Sources */,
 				02BF5A842A36A2C1002689B8 /* Difference.swift in Sources */,

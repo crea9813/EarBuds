@@ -26,12 +26,14 @@ struct PlaybackView: View {
                         Spacer()
                     }
                     
-                    Text("지금 매연님이 듣고 있는 노래는")
+                    Text("매연님이\n듣고 있는 노래는")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .font(.title2)
                         .padding(.top, 40)
                         .padding(.bottom, 20)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(8)
                     
                     AsyncImage(url: URL(string: viewStore.track?.attributes.artwork.url.replacingOccurrences(of: "{w}", with: "400").replacingOccurrences(of: "{h}", with: "400") ?? "")) {
                         image in
@@ -66,21 +68,25 @@ struct PlaybackView: View {
                     
                     Spacer()
                     
-                    HStack {
-                        Image(systemName: "play.circle")
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 24, height: 24)
-                            .padding(.vertical, 10)
-                            .padding(.leading, 18)
-                        Text("음악 앱으로 재생")
-                            .foregroundColor(Color(.white))
-                            .fontWeight(.semibold)
-                            .font(.headline)
-                            .padding(.trailing, 18)
+                    if let href = viewStore.track?.attributes.url {
+                        Link(destination: URL(string: href)!) {
+                            HStack {
+                                Image(systemName: "play.circle")
+                                    .resizable()
+                                    .foregroundColor(.white)
+                                    .frame(width: 24, height: 24)
+                                    .padding(.vertical, 10)
+                                    .padding(.leading, 18)
+                                Text("음악 앱으로 재생")
+                                    .foregroundColor(Color(.white))
+                                    .fontWeight(.semibold)
+                                    .font(.headline)
+                                    .padding(.trailing, 18)
+                            }
+                            .background(Color(.white.withAlphaComponent(0.5)))
+                            .clipShape(RoundedRectangle(cornerRadius: 22))
+                        }
                     }
-                    .background(Color(.white.withAlphaComponent(0.5)))
-                    .clipShape(RoundedRectangle(cornerRadius: 22))
                 }
                 .zIndex(1)
                 GradientEffectView(
