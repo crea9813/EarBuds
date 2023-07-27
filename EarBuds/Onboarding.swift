@@ -14,16 +14,15 @@ struct Onboarding: ReducerProtocol {
     
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.Alert>?
-        var playbackState: Playback.State?
         var isNavigationActive: Bool = false
         var playback: Playback.State?
     }
     
-    enum Action {
+    enum Action: Equatable {
         case playback(Playback.Action)
         case setNavigation(isActive: Bool)
         case alert(PresentationAction<Alert>)
-        case signInResponse(TaskResult<Void>)
+        case signInResponse(TaskResult<User>)
         case startButtonTapped
         case musicAuthorizationStatusResponse(SKCloudServiceAuthorizationStatus)
         
@@ -45,12 +44,22 @@ struct Onboarding: ReducerProtocol {
                 state.playback = nil
                 return .none
                 
-            case .signInResponse(.success):
+            case .signInResponse(.success(let user)):
                 state.isNavigationActive = true
                 state.playback = Playback.State()
-                return .none
+                UserDefaults.standard.set(user.uid, forKey: "UserID")
+                return .run { _ in
+                    try await self.firestoreClient.addUser(user)
+                }
                 
             case .signInResponse(.failure):
+                state.alert = AlertState {
+                    TextState(
+                """
+                잠시 후 다시 시도해주세요
+                """
+                    )
+                }
                 return .none
                 
             case .startButtonTapped:
@@ -61,13 +70,7 @@ struct Onboarding: ReducerProtocol {
                     guard status == .authorized
                     else { return }
                     
-                    let user = await self.signInAnonymously()
-                    
-                    UserDefaults.standard.set(user.uid, forKey: "UserID")
-                    
-                    await send(.signInResponse(
-                        TaskResult { try await self.firestoreClient.addUser(user) }
-                    ))
+                    await send(.signInResponse(TaskResult { await self.signInAnonymously() }))
                 }
                 
             case .musicAuthorizationStatusResponse(let status):
@@ -137,7 +140,6 @@ struct Onboarding: ReducerProtocol {
                     return
                 }
                 
-                print("*** USER TOKEN : \(token) ***")
                 /// Store the Music User Token for future use in your application.
                 let userDefaults = UserDefaults.standard
                 
@@ -158,3 +160,4 @@ struct Onboarding: ReducerProtocol {
         return token
     }
 }
+

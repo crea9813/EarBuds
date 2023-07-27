@@ -12,8 +12,11 @@ import AVKit
 struct Playback: ReducerProtocol {
     
     struct State: Equatable {
-        var audioPlayer: AVPlayer!
+        var isSheetPresented: Bool = false
+        var profile: ProfileFeature.State?
+        
         var track: Tracks.Track?
+        var audioPlayer: AVPlayer!
         var gradientColors: [Color] = [.gray, .white]
     }
     
@@ -22,7 +25,9 @@ struct Playback: ReducerProtocol {
         let artworkURL: String
     }
     
-    enum Action {
+    enum Action: Equatable {
+        case setSheet(isPresented: Bool)
+        case profile(ProfileFeature.Action)
         case fetchMusic
         case musicResponse(TaskResult<Tracks.Track>)
         case updateBackground(TaskResult<[Color]>)
@@ -32,45 +37,62 @@ struct Playback: ReducerProtocol {
     }
     
     @Dependency(\.musicClient) var musicClient
-    private enum CancelID { case musicRequest }
+    private enum CancelID { case track }
     
-    func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
-        switch action {
-        case .shareButtonTapped:
-            return .none
-        case .playInMusicButtonTapped:
-            return .none
-        case .musicResponse(.success(let track)):
-            state.track = track
-            
-            return .run { send in
-                await send(.playPreviewTrack(track.attributes.previews[0].url))
+    var body: some ReducerProtocol<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case .setSheet(isPresented: true):
+                state.profile = ProfileFeature.State(uid: "CxdAOmfQU2asCbJ9YfQmhIX6Xd13")
+                state.isSheetPresented = true
+                return .none
                 
-                await send(.updateBackground(
-                    TaskResult { try await fetchArtwork(with: track.attributes.artwork.url.replacingOccurrences(of: "{w}", with: "1000").replacingOccurrences(of: "{h}", with: "1000"))}
-                ), animation: .none)
+            case .setSheet(isPresented: false):
+                state.profile = nil
+                state.isSheetPresented = false
+                return .none
+                
+            case .profile:
+                return .none
+                
+            case .shareButtonTapped:
+                return .none
+            case .playInMusicButtonTapped:
+                return .none
+            case .musicResponse(.success(let track)):
+                state.track = track
+                
+                return .run { send in
+                    await send(.playPreviewTrack(track.attributes.previews[0].url))
+                    
+                    await send(.updateBackground(
+                        TaskResult { try await fetchArtwork(with: track.attributes.artwork.url.replacingOccurrences(of: "{w}", with: "1000").replacingOccurrences(of: "{h}", with: "1000"))}
+                    ), animation: .none)
+                }
+            case .musicResponse(.failure(let error)):
+                return .none
+            case .updateBackground(.success(let colors)):
+                state.gradientColors = colors
+                return .none
+            case .updateBackground(.failure):
+                return .none
+            case .playPreviewTrack(let previewURL):
+                state.audioPlayer = AVPlayer(url: URL(string: previewURL)!)
+                state.audioPlayer.play()
+                return .none
+            case .fetchMusic:
+                return .run { send in
+                    await send(
+                        .musicResponse(TaskResult {
+                            try await self.musicClient.recentlyPlayedTrack()
+                        }),
+                        animation: .none
+                    )
+                }
+                .cancellable(id: CancelID.track)
             }
-        case .musicResponse(.failure(let error)):
-            return .none
-        case .updateBackground(.success(let colors)):
-            state.gradientColors = colors
-            return .none
-        case .updateBackground(.failure):
-            return .none
-        case .playPreviewTrack(let previewURL):
-            state.audioPlayer = AVPlayer(url: URL(string: previewURL)!)
-            state.audioPlayer.play()
-            return .none
-        case .fetchMusic:
-            return .run { send in
-                await send(
-                    .musicResponse(TaskResult {
-                        try await self.musicClient.recentlyPlayedTrack()
-                    }),
-                    animation: .none
-                )
-            }
-            .cancellable(id: CancelID.musicRequest)
+        }.ifLet(\.profile, action: /Action.profile) {
+            ProfileFeature()
         }
     }
     

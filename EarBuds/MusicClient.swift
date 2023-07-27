@@ -107,8 +107,6 @@ extension MusicClient: DependencyKey {
             
             let (data, response) = try await URLSession.shared.data(for: requestURL)
             
-            print(String(data: data, encoding: .utf8))
-            
             let tracks = try jsonDecoder.decode(Tracks.self, from: data)
             
             return tracks.tracks.first!

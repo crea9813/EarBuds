@@ -10,17 +10,20 @@ import ComposableArchitecture
 import XCTestDynamicOverlay
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 // MARK: API client interface
 
 struct FirestoreClient {
     var addUser: @Sendable (User) async throws -> Void
+    var fetchUserProfile: @Sendable (String) async throws -> UserProfile
 }
 
 extension FirestoreClient: TestDependencyKey {
     
     static let testValue = Self(
-        addUser: unimplemented("\(Self.self).addUser")
+        addUser: unimplemented("\(Self.self).addUser"),
+        fetchUserProfile: unimplemented("\(Self.self).fetchUserProfile")
     )
 }
 
@@ -34,19 +37,18 @@ extension DependencyValues {
 extension FirestoreClient: DependencyKey {
     static let liveValue = Self(
         addUser: { user in
-            let db = Firestore.firestore()
-            
-            db.collection("users").document(user.uid).setData([
+            return try await Firestore.firestore().collection("users").document(user.uid).setData([
                 "name" : "재머리",
+                "uid" : user.uid,
                 "userToken" : UserDefaults.standard.string(forKey: "MUSIC_USER_TOKEN")!
-            ]) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully written!")
-                    return
-                }
-            }
+            ])
+        },
+        fetchUserProfile: { userID in
+            return try await Firestore.firestore().collection("users").document("\(userID)").getDocument(as: UserProfile.self)
         }
     )
+}
+
+extension FirestoreClient {
+    
 }

@@ -21,9 +21,12 @@ struct EarBudsApp: App {
     
     var body: some Scene {
         WindowGroup {
-            OnboardingView(store: Store(
-                initialState: Onboarding.State(),
-                reducer: Onboarding()))
+            AppView(
+                store: Store(initialState: AppFeature.State()) {
+                    AppFeature()
+                        ._printChanges()
+                }
+            )
         }
     }
 }

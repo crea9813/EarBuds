@@ -17,7 +17,9 @@ struct PlaybackView: View {
             ZStack {
                 VStack {
                     HStack {
-                        Button(action: { }) {
+                        Button(action: {
+                            viewStore.send(.setSheet(isPresented: true))
+                        }) {
                             CircleImageView(name: "person.fill")
                         }
                         .frame(width: 40, height: 40)
@@ -94,6 +96,18 @@ struct PlaybackView: View {
                         AnimatedGradient.Model(colors: viewStore.gradientColors)
                     )
                 )
+            }
+            .sheet(isPresented: viewStore.binding(get: \.isSheetPresented, send: Playback.Action.setSheet(isPresented:))) {
+                IfLetStore(self.store.scope(
+                    state: \.profile,
+                    action: Playback.Action.profile
+                )
+                ) {
+                    ProfileView(store: $0)
+                        .presentationDetents([.height(250)])
+                } else: {
+                    ProgressView()
+                }
             }
             .task {
                 viewStore.send(.fetchMusic)
