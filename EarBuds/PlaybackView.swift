@@ -28,7 +28,7 @@ struct PlaybackView: View {
                         Spacer()
                     }
                     
-                    Text("매연님이\n듣고 있는 노래는")
+                    Text("바나나님이\n듣고 있는 노래는")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                         .font(.title2)
@@ -97,14 +97,13 @@ struct PlaybackView: View {
                     )
                 )
             }
-            .sheet(isPresented: viewStore.binding(get: \.isSheetPresented, send: Playback.Action.setSheet(isPresented:))) {
+            .fullScreenCover(isPresented: viewStore.binding(get: \.isSheetPresented, send: Playback.Action.setSheet(isPresented:))) {
                 IfLetStore(self.store.scope(
                     state: \.profile,
                     action: Playback.Action.profile
                 )
-                ) {
-                    ProfileView(store: $0)
-                        .presentationDetents([.height(250)])
+                ) { _ in
+                    FriendsView()
                 } else: {
                     ProgressView()
                 }

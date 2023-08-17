@@ -12,7 +12,16 @@ struct FriendsView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    
+                    HStack {
+                        Text("친구 목록").font(.largeTitle).bold().foregroundColor(.white)
+                        Spacer()
+                        Button(action: {
+                            AddFriendView()
+                        }, label: {
+                            CircleImageView(name: "plus")
+                        }).frame(width: 28, height: 28)
+                    }.padding(.horizontal, 30)
+                    Spacer()
                 }
                 .zIndex(1)
                 
