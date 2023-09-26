@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0237EA9E2A4D33F500647DF2 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 0237EA9D2A4D33F500647DF2 /* ComposableArchitecture */; };
 		023F42F12A1F041300940065 /* EarBudsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F42F02A1F041300940065 /* EarBudsApp.swift */; };
-		023F42F32A1F041300940065 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023F42F22A1F041300940065 /* ContentView.swift */; };
 		023F42F52A1F041400940065 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F42A1F041400940065 /* Assets.xcassets */; };
 		023F42F82A1F041400940065 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 023F42F72A1F041400940065 /* Preview Assets.xcassets */; };
 		0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0289D5002A26EE2F003E9A3D /* PlaybackView.swift */; };
@@ -28,18 +27,20 @@
 		02BF5A862A36A3FD002689B8 /* RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A852A36A3FD002689B8 /* RGB.swift */; };
 		02BF5A882A36A430002689B8 /* EYZ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A872A36A430002689B8 /* EYZ.swift */; };
 		02BF5A8C2A36AED0002689B8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */; };
-		02FD6E382A53C3D1004066BE /* FirestoreClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E372A53C3D1004066BE /* FirestoreClient.swift */; };
 		02FD6E3A2A53EA76004066BE /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E392A53EA76004066BE /* FriendsView.swift */; };
 		02FD6E3C2A53EC00004066BE /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E3B2A53EC00004066BE /* AddFriendView.swift */; };
 		02FD6E3E2A53EC05004066BE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E3D2A53EC05004066BE /* ProfileView.swift */; };
 		02FD6E402A53EC2C004066BE /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E3F2A53EC2C004066BE /* Color+Extension.swift */; };
 		02FD6E422A53F2FB004066BE /* ProfileFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E412A53F2FB004066BE /* ProfileFeature.swift */; };
 		02FD6E532A547197004066BE /* AppFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02FD6E522A547197004066BE /* AppFeature.swift */; };
+		186DECAA2AB96C4B0035D852 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186DECA92AB96C4B0035D852 /* SignUpView.swift */; };
+		186DECAC2AB970180035D852 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 186DECAB2AB970180035D852 /* Localizable.xcstrings */; };
 		18948CAA2A7398CC006E102F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 18948CA92A7398CC006E102F /* FirebaseAnalytics */; };
 		18948CAC2A7398CC006E102F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 18948CAB2A7398CC006E102F /* FirebaseAuth */; };
 		18948CAE2A7398CC006E102F /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 18948CAD2A7398CC006E102F /* FirebaseCrashlytics */; };
 		18948CB02A7398CC006E102F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 18948CAF2A7398CC006E102F /* FirebaseFirestore */; };
 		18948CB22A7398CC006E102F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 18948CB12A7398CC006E102F /* FirebaseFirestoreSwift */; };
+		18D1B4D02A9DCD1B002F123D /* EarBudsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1B4CF2A9DCD1B002F123D /* EarBudsClient.swift */; };
 		18E7988B2A72359D0079BF7F /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E7988A2A72359D0079BF7F /* UserProfile.swift */; };
 		839301FD2A3BE1BD00A5CEAE /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839301FC2A3BE1BD00A5CEAE /* Song.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +48,6 @@
 /* Begin PBXFileReference section */
 		023F42ED2A1F041300940065 /* EarBuds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarBuds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		023F42F02A1F041300940065 /* EarBudsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarBudsApp.swift; sourceTree = "<group>"; };
-		023F42F22A1F041300940065 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		023F42F42A1F041400940065 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		023F42F72A1F041400940065 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0289D5002A26EE2F003E9A3D /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
@@ -66,13 +66,15 @@
 		02BF5A852A36A3FD002689B8 /* RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGB.swift; sourceTree = "<group>"; };
 		02BF5A872A36A430002689B8 /* EYZ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EYZ.swift; sourceTree = "<group>"; };
 		02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		02FD6E372A53C3D1004066BE /* FirestoreClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreClient.swift; sourceTree = "<group>"; };
 		02FD6E392A53EA76004066BE /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		02FD6E3B2A53EC00004066BE /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
 		02FD6E3D2A53EC05004066BE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		02FD6E3F2A53EC2C004066BE /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		02FD6E412A53F2FB004066BE /* ProfileFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeature.swift; sourceTree = "<group>"; };
 		02FD6E522A547197004066BE /* AppFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFeature.swift; sourceTree = "<group>"; };
+		186DECA92AB96C4B0035D852 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		186DECAB2AB970180035D852 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		18D1B4CF2A9DCD1B002F123D /* EarBudsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarBudsClient.swift; sourceTree = "<group>"; };
 		18E7988A2A72359D0079BF7F /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		839301FC2A3BE1BD00A5CEAE /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,31 +118,27 @@
 				02A151C72A4138A20083401A /* GoogleService-Info.plist */,
 				0289D5022A26F51C003E9A3D /* GradientEffectView.swift */,
 				023F42F02A1F041300940065 /* EarBudsApp.swift */,
-				02A151BB2A40217B0083401A /* MusicClient.swift */,
-				02FD6E372A53C3D1004066BE /* FirestoreClient.swift */,
-				023F42F22A1F041300940065 /* ContentView.swift */,
+				18D1B4CE2A9DCCF6002F123D /* Client */,
 				0289D5002A26EE2F003E9A3D /* PlaybackView.swift */,
 				02BF5A8B2A36AED0002689B8 /* OnboardingView.swift */,
 				02FD6E522A547197004066BE /* AppFeature.swift */,
 				02A151C92A41396C0083401A /* Onboarding.swift */,
+				186DECA92AB96C4B0035D852 /* SignUpView.swift */,
+				186DECAB2AB970180035D852 /* Localizable.xcstrings */,
 				0289D5082A272349003E9A3D /* CircleImageButton.swift */,
 				02FD6E392A53EA76004066BE /* FriendsView.swift */,
 				02FD6E3B2A53EC00004066BE /* AddFriendView.swift */,
 				02FD6E432A53F301004066BE /* Profile */,
 				0289D5062A270C49003E9A3D /* Playback.swift */,
-				18E7988A2A72359D0079BF7F /* UserProfile.swift */,
-				839301FC2A3BE1BD00A5CEAE /* Song.swift */,
+				186965162AAB117000F1F411 /* Models */,
 				023F42F42A1F041400940065 /* Assets.xcassets */,
 				023F42F62A1F041400940065 /* Preview Content */,
 				0289D5042A270983003E9A3D /* AverageColor.swift */,
-				02FD6E3F2A53EC2C004066BE /* Color+Extension.swift */,
+				182203B62A8E11AC00BC06AF /* Extensions */,
 				02BF5A7B2A36A0B9002689B8 /* DominantColors.swift */,
 				02BF5A832A36A2C1002689B8 /* Difference.swift */,
-				02BF5A812A36A1F7002689B8 /* CGFloat+Extension.swift */,
 				02BF5A872A36A430002689B8 /* EYZ.swift */,
 				02BF5A852A36A3FD002689B8 /* RGB.swift */,
-				02BF5A7F2A36A1D9002689B8 /* UIImage+Extension.swift */,
-				02BF5A7D2A36A19F002689B8 /* CGSize+Extension.swift */,
 			);
 			path = EarBuds;
 			sourceTree = "<group>";
@@ -160,6 +158,35 @@
 				02FD6E412A53F2FB004066BE /* ProfileFeature.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		182203B62A8E11AC00BC06AF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				02FD6E3F2A53EC2C004066BE /* Color+Extension.swift */,
+				02BF5A812A36A1F7002689B8 /* CGFloat+Extension.swift */,
+				02BF5A7F2A36A1D9002689B8 /* UIImage+Extension.swift */,
+				02BF5A7D2A36A19F002689B8 /* CGSize+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		186965162AAB117000F1F411 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				18E7988A2A72359D0079BF7F /* UserProfile.swift */,
+				839301FC2A3BE1BD00A5CEAE /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		18D1B4CE2A9DCCF6002F123D /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				02A151BB2A40217B0083401A /* MusicClient.swift */,
+				18D1B4CF2A9DCD1B002F123D /* EarBudsClient.swift */,
+			);
+			path = Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +239,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 023F42E42A1F041300940065;
 			packageReferences = (
@@ -234,6 +262,7 @@
 			files = (
 				023F42F82A1F041400940065 /* Preview Assets.xcassets in Resources */,
 				023F42F52A1F041400940065 /* Assets.xcassets in Resources */,
+				186DECAC2AB970180035D852 /* Localizable.xcstrings in Resources */,
 				02A151C82A4138A20083401A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,7 +278,6 @@
 				02FD6E422A53F2FB004066BE /* ProfileFeature.swift in Sources */,
 				02FD6E532A547197004066BE /* AppFeature.swift in Sources */,
 				0289D5072A270C49003E9A3D /* Playback.swift in Sources */,
-				023F42F32A1F041300940065 /* ContentView.swift in Sources */,
 				0289D5092A272349003E9A3D /* CircleImageButton.swift in Sources */,
 				02BF5A7C2A36A0B9002689B8 /* DominantColors.swift in Sources */,
 				02A151CA2A41396C0083401A /* Onboarding.swift in Sources */,
@@ -259,10 +287,11 @@
 				839301FD2A3BE1BD00A5CEAE /* Song.swift in Sources */,
 				18E7988B2A72359D0079BF7F /* UserProfile.swift in Sources */,
 				02FD6E3A2A53EA76004066BE /* FriendsView.swift in Sources */,
+				18D1B4D02A9DCD1B002F123D /* EarBudsClient.swift in Sources */,
 				02BF5A882A36A430002689B8 /* EYZ.swift in Sources */,
 				02BF5A822A36A1F7002689B8 /* CGFloat+Extension.swift in Sources */,
+				186DECAA2AB96C4B0035D852 /* SignUpView.swift in Sources */,
 				0289D5012A26EE2F003E9A3D /* PlaybackView.swift in Sources */,
-				02FD6E382A53C3D1004066BE /* FirestoreClient.swift in Sources */,
 				02BF5A802A36A1D9002689B8 /* UIImage+Extension.swift in Sources */,
 				0289D5052A270983003E9A3D /* AverageColor.swift in Sources */,
 				02BF5A842A36A2C1002689B8 /* Difference.swift in Sources */,

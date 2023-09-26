@@ -12,10 +12,20 @@ import FirebaseAuth
 
 struct Onboarding: ReducerProtocol {
     
+    enum OnboardingViewState: Equatable {
+        case start
+        case userID
+        case password
+    }
+    
     struct State: Equatable {
         @PresentationState var alert: AlertState<Action.Alert>?
         var isNavigationActive: Bool = false
         var playback: Playback.State?
+        
+        var viewState: OnboardingViewState = .start
+        var id: String = ""
+        var password: String = ""
     }
     
     enum Action: Equatable {
@@ -26,11 +36,12 @@ struct Onboarding: ReducerProtocol {
         case startButtonTapped
         case musicAuthorizationStatusResponse(SKCloudServiceAuthorizationStatus)
         
+        case idChanged(String)
+        case passwordChanged(String)
+        
         enum Alert: Equatable { }
+        
     }
-    
-    @Dependency(\.firestoreClient) var firestoreClient
-    
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
@@ -47,9 +58,8 @@ struct Onboarding: ReducerProtocol {
             case .signInResponse(.success(let user)):
                 state.isNavigationActive = true
                 state.playback = Playback.State()
-                UserDefaults.standard.set(user.uid, forKey: "UserID")
                 return .run { _ in
-                    try await self.firestoreClient.addUser(user)
+                    
                 }
                 
             case .signInResponse(.failure):
@@ -63,15 +73,8 @@ struct Onboarding: ReducerProtocol {
                 return .none
                 
             case .startButtonTapped:
-                return .run { send in
-                    let status = await self.requestAuthorization()
-                    await send(.musicAuthorizationStatusResponse(status))
-
-                    guard status == .authorized
-                    else { return }
-                    
-                    await send(.signInResponse(TaskResult { await self.signInAnonymously() }))
-                }
+                state.viewState = .userID
+                return .none
                 
             case .musicAuthorizationStatusResponse(let status):
                 switch status {
@@ -101,6 +104,10 @@ struct Onboarding: ReducerProtocol {
                 return .none
             case .alert(_):
                 return .none
+            case .idChanged(let id):
+                return .none
+            case .passwordChanged(_):
+                return .none
             }
         }.ifLet(\.playback, action: /Action.playback) {
             Playback()
@@ -117,10 +124,6 @@ struct Onboarding: ReducerProtocol {
     
     func signInAnonymously() async -> User {
         return await withCheckedContinuation { continuation in
-            Auth.auth().signInAnonymously() { authResult, error  in
-                guard let user = authResult?.user else { return }
-                continuation.resume(returning: user)
-            }
         }
     }
     

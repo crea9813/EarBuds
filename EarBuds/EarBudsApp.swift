@@ -6,19 +6,11 @@
 //
 
 import SwiftUI
-import ComposableArchitecture
-import FirebaseCore
-import FirebaseFirestore
-import FirebaseAuth
 import StoreKit
+import ComposableArchitecture
 
 @main
 struct EarBudsApp: App {
-    
-    init() {
-        FirebaseApp.configure()
-    }
-    
     var body: some Scene {
         WindowGroup {
             AppView(

@@ -10,3 +10,6 @@ import Foundation
 struct UserProfile: Equatable, Codable {
     let name, uid, userToken: String
 }
+
+
+

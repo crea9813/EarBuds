@@ -21,7 +21,6 @@ struct ProfileFeature: ReducerProtocol {
         case fetchUserProfileResponse(TaskResult<UserProfile>)
     }
     
-    @Dependency(\.firestoreClient) var firestoreClient
     private enum CancelID { case profile }
     
     func reduce(into state: inout State, action: Action) -> EffectTask<Action> {
@@ -33,7 +32,7 @@ struct ProfileFeature: ReducerProtocol {
             state.profile = nil
             
             return .run { send in
-                await send(.fetchUserProfileResponse(TaskResult { try await self.firestoreClient.fetchUserProfile(userID) }))
+                
             }
             .cancellable(id: CancelID.profile)
             

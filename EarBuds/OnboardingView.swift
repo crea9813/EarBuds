@@ -8,92 +8,116 @@
 import SwiftUI
 import ComposableArchitecture
 
+
+
 struct OnboardingView: View {
-    
-    let store: StoreOf<Onboarding>
+    public let store: StoreOf<Onboarding>
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationView {
-                GeometryReader { geometry in
-                    ZStack {
-                        GradientEffectView(
-                            .constant(
-                                AnimatedGradient.Model(colors: [randomColor(), randomColor(),randomColor()])
-                            )
-                        )
-                        VStack {
-                            Text("친구는 무슨 노래를 듣고 있을까요?")
+            VStack {
+                switch viewStore.viewState {
+                case .start:
+                    Text("start.title").font(.title).fontWeight(.bold)
+                    Spacer()
+                    Button(action: {
+                        viewStore.send(.startButtonTapped, animation: .easeInOut)
+                    }, label: {
+                        HStack {
+                            Spacer()
+                            Text("확인")
                                 .foregroundColor(.white)
-                                .fontWeight(.bold)
-                                .font(.title2)
-                                .padding(.top, 40)
-                                .padding(.bottom, 30)
-                            ZStack {
-                                Circle()
-                                    .frame(width: geometry.size.width - 100, height: geometry.size.width - 100)
-                                    .shadow(radius: 10)
-                                    .foregroundColor(Color(.black.withAlphaComponent(0.5)))
-                                Circle()
-                                    .frame(width: 100, height: 100)
-                                    .shadow(radius: 10)
-                                    .foregroundColor(Color(.white.withAlphaComponent(0.7)))
-                                Image(systemName: "play.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 30)
-                                    .padding(.leading, 8)
-                            }
-                            
-                            NavigationLink(destination: IfLetStore(
-                                self.store.scope(
-                                    state: \.playback,
-                                    action: Onboarding.Action.playback
-                                )
-                            ) {
-                                PlaybackView(store: $0)
-                            } else: {
-                                Text("Loading")
-                            }, isActive: viewStore.binding(
-                                get: \.isNavigationActive,
-                                send: Onboarding.Action.setNavigation(isActive:)
-                            )
-                            ) {
-                                HStack {
-                                    Text("친구 초대하고 시작하기")
-                                        .foregroundColor(Color(.white))
-                                        .fontWeight(.bold)
-                                        .font(.headline)
-                                        .padding(.horizontal, 18)
-                                        .padding(.vertical, 12)
-                                }
-                                .background(Color(.white.withAlphaComponent(0.5)))
-                                .clipShape(RoundedRectangle(cornerRadius: 22))
-                                .padding(30)
-                            }
+                                .fontWeight(.semibold)
+                                .font(.headline)
+                            Spacer()
                         }
-                    }
+                    })
+                    .frame(height: 58)
+                    .foregroundColor(.white)
+                    .background(.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                case .userID:
+                    OnboardingForm(title: "userID.title", "userID.textField", viewStore.binding(get: \.id, send: Onboarding.Action.idChanged))
+                        .transition(.slide)
+                case .password:
+                    OnboardingForm(title: "password.title", "password.textField", viewStore.binding(get: \.id, send: Onboarding.Action.idChanged))
+                        .transition(.slide)
                 }
-                
             }
-            .alert(store: self.store.scope(state: \.$alert, action: Onboarding.Action.alert))
+            .padding(.horizontal, 22)
+            .padding(.top, 60)
+            .padding(.bottom, 40)
         }
-    }
-    
-    func randomColor() -> Color {
-        let redValue = CGFloat(drand48())
-        let greenValue = CGFloat(drand48())
-        let blueValue = CGFloat(drand48())
-        
-        let randomColor = UIColor(red: redValue, green: greenValue, blue: blueValue, alpha: 1.0)
-        
-        return Color(randomColor)
     }
 }
 
-struct OnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnboardingView(store: Store(initialState: Onboarding.State()) {
+
+struct OnboardingForm: View {
+    
+    private let title: LocalizedStringKey
+    private let placeHolder: LocalizedStringKey
+    
+    @Binding private var text: String
+    
+    init(title: LocalizedStringKey, _ placeHolder: LocalizedStringKey, _ text: Binding<String>) {
+        self.title = title
+        self.placeHolder = placeHolder
+        self._text = text
+    }
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(title)
+                    .fontWeight(.bold)
+                    .font(.title)
+                Spacer()
+            }
+            HStack {
+                TextField(placeHolder, text: $text)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+            }.padding(.top, 32)
+            Spacer()
+            Button(action: {
+                
+            }, label: {
+                HStack {
+                    Spacer()
+                    Text("확인")
+                        .foregroundColor(.white)
+                        .fontWeight(.semibold)
+                        .font(.headline)
+                    Spacer()
+                }
+            })
+            .disabled(text.isEmpty)
+            .frame(height: 58)
+            .foregroundColor(.white)
+            .background(text.isEmpty ? .gray : .blue)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+        }
+    }
+}
+
+struct ConfirmationButtonStyle: PrimitiveButtonStyle {
+    let action: () -> Void
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration
+            .label
+            .frame(height: 58)
+            .foregroundColor(.white)
+            .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+#Preview {
+    OnboardingView(
+        store: Store(initialState: Onboarding.State(), reducer: {
             Onboarding()
         })
-    }
+    )
+        .environment(\.locale, .init(identifier: "ko"))
 }

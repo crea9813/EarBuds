@@ -61,12 +61,14 @@ extension AppFeature {
 }
 
 struct AppView: View {
+    
+    @AppStorage("isSignIn") var isSignIn: Bool = false
+
     let store: StoreOf<AppFeature>
     
     var body: some View {
         NavigationStackStore(self.store.scope(state: \.path, action: { .path($0) })) {
-            OnboardingView(store: self.store.scope(state: \.onboarding, action: { .onboarding($0) })
-            )
+            OnboardingView(store: self.store.scope(state: \.onboarding, action: { .onboarding($0) }))
         } destination: {
             switch $0 {
             case .playback:
